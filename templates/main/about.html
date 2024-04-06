@@ -1,0 +1,35 @@
+<!-- templates/main/about.html -->
+
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="about-div">
+    <h1 class="about-page-title">About Us</h1>
+    <p class="about-page-text">Welcome to My Flower Shop! We are dedicated to providing you with the freshest and most
+        beautiful flowers for all
+        occasions.</p>
+    <p class="about-page-text">At My Flower Shop, we believe in the power of flowers to brighten any day and add a touch
+        of beauty to every moment.
+        Our team of florists carefully selects each flower to ensure the highest quality and freshness.</p>
+    <p class="about-page-text">Whether you're celebrating a special occasion, expressing your love, or simply bringing a
+        smile to someone's face, we
+        have the perfect bouquet for you. Browse our selection of stunning arrangements and let us help you make every
+        moment memorable.</p>
+    <p class="about-page-text">Thank you for choosing My Flower Shop for all your floral needs. We look forward to
+        serving you!</p>
+</div>
+<style>
+    .about-div {
+    }
+
+    .about-page-title {
+        font-weight: bold; /* Жирный текст для заголовков */
+        color: #000000; /* Цвет заголовков */
+    }
+
+    .about-page-text {
+        margin-bottom: 1em; /* Отступ снизу для параграфов */
+        font-size: 20px;
+    }
+</style>
+{% endblock %}

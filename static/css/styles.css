@@ -1,0 +1,53 @@
+/* styles.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #ecc09c;
+    overflow-x: hidden;
+}
+
+/* Основные стили для header */
+header {
+    background: #f8c89b; /* Цвет фона */
+    padding: 15px 0; /* Внутренние отступы */
+    border-bottom: 1px solid #ddd; /* Горизонтальная линия снизу */
+}
+
+main {
+    margin-top: 1rem;
+}
+
+footer {
+    background: #f8c89b; /* Цвет фона */
+    padding: 15px 0; /* Внутренние отступы */
+    border-bottom: 1px solid #ddd; /* Горизонтальная линия снизу */
+}
+
+.site-icon {
+    cursor: default;
+    width: 250px;
+}
+
+/* Стили для поисковой формы */
+.form-control {
+    width: 800px; /* Ширина поля ввода */
+    margin-right: 10px; /* Отступ справа */
+}
+
+/* Стили для навигационного меню */
+.nav-item {
+    margin-right: 20px; /* Отступ между элементами меню */
+}
+
+/* Стили для ссылок в навигационном меню */
+.nav-link {
+    color: #000000; /* Цвет текста */
+    font-weight: bold; /* Жирный текст */
+    text-decoration: none; /* Убираем подчеркивание ссылок */
+}
+
+/* Стили для активной ссылки */
+.nav-item.active .nav-link {
+    color: #007bff; /* Цвет активной ссылки */
+}

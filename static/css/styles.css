@@ -51,3 +51,39 @@ footer {
 .nav-item.active .nav-link {
     color: #007bff; /* Цвет активной ссылки */
 }
+
+
+.product-card {
+    height: 100%;
+}
+
+
+
+/* table */
+.table-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.product-table th, .product-table td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.product-table th {
+    background-color: #f2f2f2;
+}
+
+.product-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.product-table tr:hover {
+    background-color: #dddddd;
+}

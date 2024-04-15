@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('data-form');
+    const clearBtn = document.getElementById('clear-btn');
 
     form.addEventListener('submit', function (event) {
         event.preventDefault();
@@ -27,5 +28,11 @@ document.addEventListener('DOMContentLoaded', function () {
         } else {
             alert(errorMessage); // Если данные невалидны, показываем ошибку
         }
+    });
+
+    // Обработчик события для кнопки "Clear"
+    clearBtn.addEventListener('click', function () {
+        document.getElementById('name').value = ''; // Очищаем поле ввода имени
+        document.getElementById('email').value = ''; // Очищаем поле ввода email
     });
 });

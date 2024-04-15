@@ -14,23 +14,39 @@ class Product(models.Model):
 # Сделать расширения модели Product чтоб была любая инфа 1 ко всем
 
 
-name_regex = r'^[А-ЩЬЮЯҐЄІЇа-щьюяґєії\'\s]+$'
-name_validator = RegexValidator(
-    regex=name_regex,
-    message="Використовуйте українську мову.",
-    code='invalid_name'
+ukrainian_name_validator = RegexValidator(
+    regex = r'^[А-ЩЬЮЯҐЄІЇа-щьюяґєії\'\s]+$',
+    message="Використовуйте українську або англійську мову.",
+    code='invalid_name_ukrainian'
 )
+
+
+english_name_validator = RegexValidator(
+    regex = r'^[A-Za-z\'\s]+$',
+    message="Використовуйте українську або англійську мову.",
+    code='invalid_name_english'
+)
+
+
+
 email_validator = RegexValidator(
     message="Введіть валідну пошту.",
     code='invalid_emale'
 )
+
+
 class FormData(models.Model):
-    name = models.CharField('Ім\'я', validators=[name_validator], max_length=100)
+    name = models.CharField('Ім\'я', max_length=100)
     email = models.EmailField('Пошта', unique=True, validators=[email_validator], max_length=100)
 
+    def validate_ukrainian_name(self):
+        ukrainian_name_validator(self.name)
 
-# class Marks():
-#     mark = 
+    def validate_english_name(self):
+        english_name_validator(self.name)
+
+
+
 # class ProductDescription(models.Models):
 #     title
 

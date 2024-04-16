@@ -18,7 +18,6 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(upload_to='static/img/')
     short_description = models.ForeignKey(ProductDescription, on_delete=models.SET_NULL, null=True)
-    # short_description = models.ForeignKey(ProductDescription, on_delete=models.CASCADE)
 
 
     def __str__(self):

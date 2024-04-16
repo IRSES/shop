@@ -7,11 +7,10 @@ body {
     overflow-x: hidden;
 }
 
-/* Основные стили для header */
 header {
-    background: #f8c89b; /* Цвет фона */
-    padding: 15px 0; /* Внутренние отступы */
-    border-bottom: 1px solid #ddd; /* Горизонтальная линия снизу */
+    background: #f8c89b; 
+    padding: 15px 0; 
+    border-bottom: 1px solid #ddd; 
 }
 
 main {
@@ -19,9 +18,9 @@ main {
 }
 
 footer {
-    background: #f8c89b; /* Цвет фона */
-    padding: 15px 0; /* Внутренние отступы */
-    border-bottom: 1px solid #ddd; /* Горизонтальная линия снизу */
+    background: #f8c89b; 
+    padding: 15px 0; 
+    border-bottom: 1px solid #ddd; 
 }
 
 .site-icon {
@@ -29,37 +28,29 @@ footer {
     width: 250px;
 }
 
-/* Стили для поисковой формы */
 .form-control {
-    width: 800px; /* Ширина поля ввода */
-    margin-right: 10px; /* Отступ справа */
+    width: 800px; 
+    margin-right: 10px; 
 }
 
-/* Стили для навигационного меню */
 .nav-item {
-    margin-right: 20px; /* Отступ между элементами меню */
+    margin-right: 20px; 
 }
 
-/* Стили для ссылок в навигационном меню */
 .nav-link {
-    color: #000000; /* Цвет текста */
-    font-weight: bold; /* Жирный текст */
-    text-decoration: none; /* Убираем подчеркивание ссылок */
+    color: #000000; 
+    font-weight: bold; 
+    text-decoration: none; 
 }
 
-/* Стили для активной ссылки */
 .nav-item.active .nav-link {
-    color: #007bff; /* Цвет активной ссылки */
+    color: #007bff; 
 }
-
 
 .product-card {
     height: 100%;
 }
 
-
-
-/* table */
 .table-title {
     text-align: center;
     margin-bottom: 20px;

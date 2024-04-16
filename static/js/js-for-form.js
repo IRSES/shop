@@ -24,15 +24,15 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         if (valid) {
-            form.submit(); // Если данные валидны, отправляем форму
+            form.submit(); 
         } else {
-            alert(errorMessage); // Если данные невалидны, показываем ошибку
+            alert(errorMessage);
         }
     });
 
-    // Обработчик события для кнопки "Clear"
+    
     clearBtn.addEventListener('click', function () {
-        document.getElementById('name').value = ''; // Очищаем поле ввода имени
-        document.getElementById('email').value = ''; // Очищаем поле ввода email
+        document.getElementById('name').value = ''; 
+        document.getElementById('email').value = ''; 
     });
 });

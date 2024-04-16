@@ -1,11 +1,7 @@
-from django.shortcuts import render
-from django.shortcuts import redirect, get_object_or_404
 from django.db.models import Q
 from .models import *
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
 from django.core.exceptions import ValidationError
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 
 
@@ -71,10 +67,3 @@ def delete_product(request, product_id):
         return redirect('table')
     else:
         pass
-
-
-
-
-# def get_description(request, product_id):
-#     product_description = get_object_or_404(ProductDescription, pk=product_id)
-#     return JsonResponse({'description': product_description.details})

@@ -1,4 +1,5 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
+from django.shortcuts import redirect, get_object_or_404
 from django.db.models import Q
 from .models import *
 from django.http import JsonResponse
@@ -54,3 +55,11 @@ def search(request):
 def product_list(request):
     products = Product.objects.all()
     return render(request, 'main/table.html', {'products': products})
+
+def delete_product(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    if request.method == 'POST':
+        product.delete()
+        return redirect('table')
+    else:
+        pass

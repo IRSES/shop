@@ -18,6 +18,12 @@
             <td>{{ product.title }}</td>
             <td>{{ product.description }}</td>
             <td>{{ product.price }}</td>
+            <td>
+                <form action="{% url 'delete_product' product.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            </td>
         </tr>
         {% endfor %}
     </tbody>

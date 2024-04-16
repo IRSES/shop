@@ -28,7 +28,6 @@ english_name_validator = RegexValidator(
 )
 
 
-
 email_validator = RegexValidator(
     message="Введіть валідну пошту.",
     code='invalid_emale'

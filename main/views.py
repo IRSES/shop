@@ -9,6 +9,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 
 
+
 def home(request):
     products = Product.objects.all()
     context = {'products': products}
@@ -41,6 +42,12 @@ def about(request):
     return render(request, 'main/about.html')
 
 
+def description(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    product_description = product.short_description
+    return render(request, 'main/description.html', {'product': product, 'product_description': product_description})
+
+
 def search(request):
     query = request.GET.get('query')
     if query:
@@ -56,6 +63,7 @@ def product_list(request):
     products = Product.objects.all()
     return render(request, 'main/table.html', {'products': products})
 
+
 def delete_product(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
@@ -63,3 +71,10 @@ def delete_product(request, product_id):
         return redirect('table')
     else:
         pass
+
+
+
+
+# def get_description(request, product_id):
+#     product_description = get_object_or_404(ProductDescription, pk=product_id)
+#     return JsonResponse({'description': product_description.details})

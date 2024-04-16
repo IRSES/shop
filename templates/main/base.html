@@ -55,17 +55,15 @@
         <div class="row">
             {% block product_content %}
             {% for product in products %}
-            <!-- Предположим, что у вас есть переменная products, содержащая данные о товарах из базы данных -->
             <div class="col-md-4 mb-4">
-                <!-- Используем сетку Bootstrap, чтобы распределить товары по колонкам на больших экранах -->
                 <div class="card product-card">
                     <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.title }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ product.title }}</h5>
                         <p class="card-text">{{ product.description }}</p>
                         <p class="card-text">Price: {{ product.price }}</p>
-                        <!-- Здесь вы можете добавить любую другую информацию о товаре, которая вам необходима -->
-                        <a href="#" class="btn btn-dark">Buy Now</a> <!-- Просто пример кнопки "Купить сейчас" -->
+                        <a href="#" class="btn btn-dark">Buy Now</a>
+                        <button class="btn btn-danger btn-sm"><a href="{% url 'description' product.id %}">Description</a></button>
                     </div>
                 </div>
             </div>

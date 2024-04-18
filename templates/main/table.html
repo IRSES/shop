@@ -4,12 +4,14 @@
 
 {% block product_content %}
 <h1 class="table-title">Product List</h1>
+<a href="{% url 'product_new' %}" class="btn btn-outline-secondary" style="width: auto;">Add New Product</a>
 <table class="product-table">
     <thead>
         <tr>
             <th>Title</th>
             <th>Description</th>
             <th>Price</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -19,11 +21,11 @@
             <td>{{ product.description }}</td>
             <td>{{ product.price }}</td>
             <td>
-                <form action="{% url 'delete_product' product.id %}" method="post">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                </form>
-            </td>
+                <div style="display: flex;">
+                    <a href="{% url 'product_edit' product.id %}" class="btn btn-success" style="margin-right: 10px;">Edit</a>
+                    <a href="{% url 'product_delete' product.id %}" class="btn btn-danger">Delete</a>
+                </div>
+            </td>                              
         </tr>
         {% endfor %}
     </tbody>

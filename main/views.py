@@ -3,7 +3,7 @@ from .models import *
 from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 
 def home(request):
@@ -55,15 +55,24 @@ def search(request):
 
 
 #Другий варіант використання формування списку «об'єктів» предметної області та відправлення його на клієнтський комп'ютер. В результаті цього всі дані, збережені раніше, завантажуються з бази даних та відображується у табличному вигляді на відповідній Web- сторінці.
-def product_list(request):
-    products = Product.objects.all()
-    return render(request, 'main/table.html', {'products': products})
+class ProductListView(ListView):
+    model = Product
+    template_name = 'main/table.html'
+    context_object_name = 'products'
 
+class ProductCreateView(CreateView):
+    model = Product
+    template_name = 'main/product_form.html'
+    success_url = '/table/'
+    fields = ('title', 'description', 'price', 'image', 'short_description')
 
-def delete_product(request, product_id):
-    product = get_object_or_404(Product, pk=product_id)
-    if request.method == 'POST':
-        product.delete()
-        return redirect('table')
-    else:
-        pass
+class ProductUpdateView(UpdateView):
+    model = Product
+    template_name = 'main/product_form.html'
+    success_url = '/table/'
+    fields = ('title', 'description', 'price', 'image', 'short_description')
+
+class ProductDeleteView(DeleteView):
+    model = Product
+    template_name = 'main/product_confirm_delete.html'
+    success_url = '/table/'

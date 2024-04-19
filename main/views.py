@@ -68,7 +68,7 @@ class ProductCreateView(CreateView):
 
 class ProductUpdateView(UpdateView):
     model = Product
-    template_name = 'main/product_form.html'
+    template_name = 'main/product_edit_form.html'
     success_url = '/table/'
     fields = ('title', 'description', 'price', 'image', 'short_description')
 

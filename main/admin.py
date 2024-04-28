@@ -4,6 +4,7 @@ from django.contrib import admin
 from .models import Product
 from .models import FormData
 from .models import ProductDescription
+from .models import CustomUser
 
 admin.site.register(FormData)
 
@@ -24,3 +25,5 @@ class ProductDescriptionAdmin(admin.ModelAdmin):
     inlines = [ProductInline]  # Включаємо вкладений клас ProductInline
 
 admin.site.register(ProductDescription, ProductDescriptionAdmin)
+
+admin.site.register(CustomUser)

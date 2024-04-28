@@ -1,0 +1,13 @@
+<!-- user_profile.html -->
+
+<h2>{{ user.username }}</h2>
+<p>Email: {{ user.email }}</p>
+<p>Роль: {{ user.role }}</p>
+
+{% if user.is_superuser %}
+    <form method="POST" action="{% url 'manage_user_permissions' user.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить</button>
+    </form>
+{% endif %}

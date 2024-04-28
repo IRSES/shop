@@ -2,6 +2,8 @@
 
 from django.db import models
 from django.core.validators import RegexValidator
+from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import *
 
 
 class ProductDescription(models.Model):
@@ -55,3 +57,30 @@ class FormData(models.Model):
 
     def validate_english_name(self):
         english_name_validator(self.name)
+
+
+# reg auth users
+class CustomUser(AbstractUser):
+    ROLE_CHOICES = (
+        ('user', 'Звичайний користувач'),
+        ('manager', 'Менеджер'),
+        ('admin', 'Адміністратор'),
+    )
+    role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='user')
+
+    groups = models.ManyToManyField(
+        Group,
+        verbose_name='groups',
+        blank=True,
+        help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.',
+        related_name='customuser_set',  
+        related_query_name='user',
+    )
+    user_permissions = models.ManyToManyField(
+        Permission,
+        verbose_name='user permissions',
+        blank=True,
+        help_text='Specific permissions for this user.',
+        related_name='customuser_set',  
+        related_query_name='user',
+    )

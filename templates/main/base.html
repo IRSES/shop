@@ -40,11 +40,32 @@
                                 <a class="nav-link {% if request.path == '/about/' %}active bg-dark text-white{% endif %}"
                                     href="{% url 'about' %}">ABOUT</a>
                             </li>
+                            {% if user.is_authenticated %}
+                            {% if user.role == 'admin' %}
                             <li class="nav-item">
                                 <a class="nav-link {% if request.path == '/table/' %}active bg-dark text-white{% endif %}"
                                     href="{% url 'table' %}">TABLE</a>
                             </li>
-                            
+                            {% endif %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'user_profile' %}">Мій профіль</a>
+                            </li>
+                            <li class="nav-item">
+                                <form method="post" action="{% url 'logout' %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-link nav-link">Вийти</button>
+                                </form>
+                            </li>
+                            {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.path == '/login/' %}active bg-dark text-white{% endif %}"
+                                    href="{% url 'login' %}">Вхід</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link {% if request.path == '/register/' %}active bg-dark text-white{% endif %}"
+                                    href="{% url 'register' %}">Реєстрація</a>
+                            </li>
+                            {% endif %}
                         </ul>
                     </nav>
                 </div>
@@ -64,7 +85,8 @@
                         <p class="card-text">{{ product.description }}</p>
                         <p class="card-text">Price: {{ product.price }}</p>
                         <a href="#" class="btn btn-dark mb-2">Buy Now</a>
-                        <a href="{% url 'description' product.id %}" class="d-block"><button class="btn btn-dark btn-sm">Description</button></a>
+                        <a href="{% url 'description' product.id %}" class="d-block"><button
+                                class="btn btn-dark btn-sm">Description</button></a>
                     </div>
                 </div>
             </div>
@@ -119,8 +141,10 @@
                         <div class="col-md-3">
                             <form id="data-form" class="col-md-12" method="post" action="">
                                 {% csrf_token %}
-                                <input class="mb-2" type="text" id="name" name="name" placeholder="Enter your name" required>
-                                <input class="mb-2" type="email" id="email" name="email" placeholder="Enter your email" required>
+                                <input class="mb-2" type="text" id="name" name="name" placeholder="Enter your name"
+                                    required>
+                                <input class="mb-2" type="email" id="email" name="email" placeholder="Enter your email"
+                                    required>
                                 <button type="submit" class="btn btn-dark mb-2">Submit</button>
                                 <button type="button" id="clear-btn" class="btn btn-secondary mb-2">Clear</button>
                             </form>

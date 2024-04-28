@@ -4,6 +4,13 @@ from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login as auth_login, logout as auth_logout
+from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.decorators import login_required
+from .forms import UserRegistrationForm
+from .forms import UserProfileForm
 
 
 def home(request):
@@ -76,3 +83,55 @@ class ProductDeleteView(DeleteView):
     model = Product
     template_name = 'main/product_confirm_delete.html'
     success_url = '/table/'
+
+
+# reg
+@login_required
+def user_profile(request):
+    user = request.user
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('user_profile')
+    else:
+        form = UserProfileForm(instance=user)
+    return render(request, 'main/user_profile.html', {'form': form, 'user': user})
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = UserRegistrationForm()
+    return render(request, 'main/register.html', {'form': form})
+
+def login(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            auth_login(request, user)
+            return redirect('home')
+    else:
+        form = AuthenticationForm()
+    return render(request, 'main/login.html', {'form': form})
+
+def logout(request):
+    auth_logout(request)
+    return redirect('home')
+
+
+@login_required 
+def manage_user_permissions(request, user_id):
+    user = get_object_or_404(CustomUser, pk=user_id)  # Получаем объект пользователя или 404 ошибку, если пользователь не найден
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('user_profile', user_id=user_id)
+    else:
+        form = UserProfileForm(instance=user)
+    return render(request, 'main/manage_user_permissions.html', {'form': form})
